@@ -1,0 +1,93 @@
+/* ---------- Summary cards ---------- */
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+}
+
+.summary-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px;
+}
+
+.summary-label {
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.summary-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.summary-value.overdue {
+  color: var(--overdue);
+}
+
+.summary-help {
+  margin: 0;
+}
+
+/* ---------- Who owes table ----------
+   Reuses global .table, .stack-row and .badge styles. */
+.owes-card {
+  overflow-x: auto;
+}
+
+.owes-status {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+/* ---------- Action cards ---------- */
+.alert-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.alert-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px 16px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.alert-text {
+  font-weight: 600;
+}
+
+/* ---------- Empty state ---------- */
+.all-caught-up {
+  text-align: center;
+  border-color: var(--primary);
+  background: #F0FDFA;
+  padding: 28px 20px;
+}
+
+.all-caught-up h2 {
+  color: var(--primary-dark);
+  margin-bottom: 6px;
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 767px) {
+  .summary-value {
+    font-size: 20px;
+  }
+
+  .owes-status {
+    align-items: flex-end;
+  }
+}

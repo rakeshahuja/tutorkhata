@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { useI18n } from '../lib/i18n.jsx';
-import { formatINR } from '../lib/money.js';
+import { formatCurrency } from '../lib/money.js';
+import { getDisplayName } from '../lib/names.js';
 
 export default function Customers({ customers, onAddCustomer }) {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const [name, setName] = useState('');
   const [fee, setFee] = useState('');
   const [error, setError] = useState('');
@@ -75,8 +76,8 @@ export default function Customers({ customers, onAddCustomer }) {
             <tbody>
               {customers.map(c => (
                 <tr key={c.id} className="stack-row">
-                  <td data-label={t('customers.col.name')}>{c.name}</td>
-                  <td data-label={t('customers.col.fee')}>{formatINR(c.monthlyFee)}</td>
+                  <td data-label={t('customers.col.name')}>{getDisplayName(c, lang)}</td>
+                  <td data-label={t('customers.col.fee')}>{formatCurrency(c.monthlyFee, lang)}</td>
                 </tr>
               ))}
             </tbody>

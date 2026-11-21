@@ -1,13 +1,14 @@
-import { useI18n } from '../lib/i18n.jsx';
+import './dashboard.css';
+import SummaryCards from '../components/SummaryCards.jsx';
+import OwesTable from '../components/OwesTable.jsx';
+import ActionToday from '../components/ActionToday.jsx';
 
-export default function Dashboard() {
-  const { t } = useI18n();
+export default function Dashboard({ customers, invoices, onMarkPaid }) {
   return (
     <section className="page">
-
-      <div className="card">
-        <p className="muted">{t('dashboard.comingSoon')}</p>
-      </div>
+      <SummaryCards invoices={invoices} />
+      <ActionToday customers={customers} invoices={invoices} onMarkPaid={onMarkPaid} />
+      <OwesTable customers={customers} invoices={invoices} />
     </section>
   );
 }

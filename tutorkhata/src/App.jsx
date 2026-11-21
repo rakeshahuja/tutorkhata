@@ -62,7 +62,7 @@ export default function App() {
   } else if (page === 'forecast') {
     content = <Forecast />;
   } else {
-    content = <Dashboard />;
+    content = <Dashboard customers={data.customers} invoices={data.invoices} onMarkPaid={onMarkPaid} />;
   }
 
   return (

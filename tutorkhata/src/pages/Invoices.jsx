@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { useI18n } from '../lib/i18n.jsx';
 import { todayISO, addDays } from '../lib/dates.js';
-import { formatINR, formatDate } from '../lib/money.js';
+import { formatCurrency, formatDate } from '../lib/money.js';
 import { daysOverdue } from '../lib/status.js';
 import { buildReminder } from '../lib/reminder.js';
+import { getDisplayName } from '../lib/names.js';
 
 export default function Invoices({ customers, invoices, bills, onCreateInvoice, onMarkPaid }) {
   const { t, lang } = useI18n();
@@ -18,7 +19,10 @@ export default function Invoices({ customers, invoices, bills, onCreateInvoice, 
   const [reminderFor, setReminderFor] = useState(null);
   const [copied, setCopied] = useState(false);
 
-  const customerName = id => customers.find(c => c.id === id)?.name ?? '';
+  const customerName = id => {
+    const c = customers.find(x => x.id === id);
+    return c ? getDisplayName(c, lang) : '';
+  };
   const today = todayISO();
   const sorted = [...invoices].sort((a, b) => a.dueDate.localeCompare(b.dueDate));
   const upcoming = bills
@@ -97,7 +101,7 @@ export default function Invoices({ customers, invoices, bills, onCreateInvoice, 
               >
                 <option value="">{t('invoices.selectCustomer')}</option>
                 {customers.map(c => (
-                  <option key={c.id} value={c.id}>{c.name}</option>
+                  <option key={c.id} value={c.id}>{getDisplayName(c, lang)}</option>
                 ))}
               </select>
             </div>
@@ -155,9 +159,9 @@ export default function Invoices({ customers, invoices, bills, onCreateInvoice, 
               {sorted.map(inv => (
                 <tr key={inv.id} className="stack-row">
                   <td data-label={t('invoices.col.customer')}>{customerName(inv.customerId)}</td>
-                  <td data-label={t('invoices.col.amount')}>{formatINR(inv.amount)}</td>
-                  <td data-label={t('invoices.col.issue')}>{formatDate(inv.issueDate, lang)}</td>
-                  <td data-label={t('invoices.col.due')}>{formatDate(inv.dueDate, lang)}</td>
+                  <td data-label={t('invoices.col.amount')}>{formatCurrency(inv.amount, lang)}</td>
+                  <td data-label={t('invoices.col.issue')}>{formatDate(inv.issueDate, t, lang)}</td>
+                  <td data-label={t('invoices.col.due')}>{formatDate(inv.dueDate, t, lang)}</td>
                   <td data-label={t('invoices.col.status')}>
                     <span className={'badge badge-' + inv.status.toLowerCase()}>
                       {t('status.' + inv.status)}
@@ -169,7 +173,7 @@ export default function Invoices({ customers, invoices, bills, onCreateInvoice, 
                     )}
                     {inv.status === 'Paid' && (
                       <div className="muted">
-                        {t('invoices.paidOn', { date: formatDate(inv.paidDate, lang) })}
+                        {t('invoices.paidOn', { date: formatDate(inv.paidDate, t, lang) })}
                       </div>
                     )}
                   </td>
@@ -200,15 +204,15 @@ export default function Invoices({ customers, invoices, bills, onCreateInvoice, 
       </div>
 
       <div className="card">
-        <h2>{t('bills.upcoming')}</h2>
+        <h2>{t('bills.upcoming', { count: 30 })}</h2>
         {upcoming.length === 0 ? (
           <p className="muted">{t('bills.empty')}</p>
         ) : (
           <ul className="list">
             {upcoming.map(b => (
               <li key={b.id}>
-                <span>{b.name}</span>
-                <span>{formatINR(b.amount)} · {formatDate(b.dueDate, lang)}</span>
+                <span>{getDisplayName(b, lang)}</span>
+                <span>{formatCurrency(b.amount, lang)} · {formatDate(b.dueDate, t, lang)}</span>
               </li>
             ))}
           </ul>
