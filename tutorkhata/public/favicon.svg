@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" rx="112" fill="#0F766E"/>
+  <path d="M248 172 C214 150 168 148 128 162 L128 344 C168 330 214 332 248 354 Z" fill="#FFFFFF"/>
+  <path d="M264 172 C298 150 344 148 384 162 L384 344 C344 330 298 332 264 354 Z" fill="#FFFFFF"/>
+  <g stroke="#99D5CF" stroke-width="12" stroke-linecap="round">
+    <line x1="162" y1="214" x2="218" y2="220"/>
+    <line x1="162" y1="256" x2="218" y2="262"/>
+    <line x1="162" y1="298" x2="218" y2="304"/>
+  </g>
+  <text x="326" y="296" font-family="Arial, Helvetica, sans-serif" font-size="112" font-weight="700" fill="#F97316" text-anchor="middle">₹</text>
+  <rect x="140" y="372" width="232" height="14" rx="7" fill="#F97316"/>
+</svg>
