@@ -1,0 +1,193 @@
+/* Forecast page styles. Uses variables defined in src/styles/app.css. */
+
+/* ---- Top bar: opening balance + period toggle ---- */
+.forecast-top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.opening-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 240px;
+  flex: 1;
+}
+
+.opening-card input {
+  max-width: 260px;
+}
+
+/* ---- 30 / 60 / 90 day toggle ---- */
+.period-toggle {
+  display: inline-flex;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 3px;
+  gap: 2px;
+}
+
+.period-toggle button {
+  border: 0;
+  background: transparent;
+  padding: 7px 14px;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  color: var(--text);
+}
+
+.period-toggle button[aria-pressed="true"] {
+  background: var(--primary);
+  color: #fff;
+  font-weight: 600;
+}
+
+/* ---- Summary cards ---- */
+.summary-sub {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* ---- Warning / safe state cards ---- */
+.warning-card {
+  border-left: 4px solid var(--overdue);
+  background: var(--overdue-bg);
+}
+
+.warning-card h2 {
+  color: var(--overdue);
+  margin-bottom: 6px;
+}
+
+.warning-card p {
+  margin: 0;
+}
+
+.safe-card {
+  border-left: 4px solid var(--primary);
+}
+
+/* ---- Chart ---- */
+.chart-card .forecast-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 8px;
+}
+
+.legend-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+.legend-in { background: var(--primary); }
+.legend-out { background: var(--accent); }
+.legend-balance { background: var(--primary-dark); }
+
+.legend-after {
+  background: var(--accent);
+  border-radius: 0;
+  height: 3px;
+}
+
+/* ---- What-if controls and comparison ---- */
+.whatif-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  align-items: end;
+}
+
+.compare-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.compare-cell {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.compare-value {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.compare-value.delta-up { color: var(--primary); }
+.compare-value.delta-down { color: var(--overdue); }
+
+/* ---- Upcoming list rows ---- */
+.forecast-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+}
+
+.forecast-date {
+  min-width: 120px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.forecast-name {
+  flex: 1;
+  min-width: 120px;
+  font-weight: 500;
+}
+
+.forecast-amount {
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.amount-in { color: var(--primary); }
+.amount-out { color: #C2410C; }
+
+/* ---- Direction badges ---- */
+.badge-in {
+  color: var(--primary-dark);
+  background: #CCFBF1;
+}
+
+.badge-out {
+  color: #C2410C;
+  background: #FFEDD5;
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 767px) {
+  .forecast-date {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .forecast-name {
+    min-width: 0;
+  }
+}

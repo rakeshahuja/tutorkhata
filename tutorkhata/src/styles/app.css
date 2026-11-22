@@ -570,3 +570,12 @@ textarea:focus {
     background: transparent;
   }
 }
+
+/* ---------- Hindi and Marathi digits: Mukta ---------- */
+/* The app sets document.documentElement.lang to hi or mr, so these rules apply only in those languages.
+   Mukta has clear, well-formed Devanagari digits. Sizes and weights are unchanged; only the family changes. */
+html[lang="hi"] body,
+html[lang="mr"] body {
+  font-family: "Mukta", "Noto Sans Devanagari", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+

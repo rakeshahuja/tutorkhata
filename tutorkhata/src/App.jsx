@@ -60,7 +60,7 @@ export default function App() {
   } else if (page === 'customers') {
     content = <Customers customers={data.customers} onAddCustomer={onAddCustomer} />;
   } else if (page === 'forecast') {
-    content = <Forecast />;
+    content = <Forecast customers={data.customers} invoices={data.invoices} bills={data.bills} />;
   } else {
     content = <Dashboard customers={data.customers} invoices={data.invoices} onMarkPaid={onMarkPaid} />;
   }
