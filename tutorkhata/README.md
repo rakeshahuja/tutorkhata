@@ -93,5 +93,6 @@ Built with the **Codebenders IDE (Nexen AI)**, as required by the hackathon.
 
 ## Team
 
-Team name: Khata Keepers
-Members: Rakesh Nanak Ahuja, Shivam Dinesh Patil
+- **Team Name** - Khata Keepers
+- **Team Member 1** - Rakesh Nanak Ahuja
+- **Team Member 2** - Shivam Dinesh Patil
